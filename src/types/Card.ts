@@ -13,5 +13,12 @@ export type Card = {
   title: {
     rendered: string;
   };
+  content?: {
+    rendered: string;
+  };
+  excerpt? : {
+    rendered : string;
+  }
+  date? : Date;
   link: string;
 };

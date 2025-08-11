@@ -2,13 +2,17 @@
 
 import Button from "../ui/button";
 
-export default function LoadMoreButton() {
+interface LoadMoreButtonProps {
+  onLoadMore: () => void;
+  loading?: boolean;
+}
+
+export default function LoadMoreButton({ onLoadMore, loading = false }: LoadMoreButtonProps) {
   return (
     <Button
-      content="Carregar mais"
-      onPress={() => {
-        console.log("Funcionando!");
-      }}
+      content={loading ? "Carregando..." : "Carregar mais"}
+      onPress={onLoadMore}
+      disabled={loading}
     />
   );
 }

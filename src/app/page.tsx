@@ -1,10 +1,8 @@
 
 import { Metadata } from "next";
 import styles from "./page.module.css";
-import { handleBlogPosts, mapPostToCard } from "@/usePosts";
-import SingleCard from "@/components/Card";
-import LoadMoreButton from "@/components/LoadMoreButton";
-import { CardNamed } from "@/types/CardNamed";
+import { handleBlogPosts } from "@/usePosts";
+import PostsList from "@/components/PostsList";
 
 export const metadata: Metadata = {
   title: "Home Blog Apiki - Últimas Postagens sobre Desenvolvimento",
@@ -17,22 +15,36 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  const data = await handleBlogPosts();
-  const posts = data.map(mapPostToCard);
+  const initialData = await handleBlogPosts(1);
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Blog Apiki',
+    description: 'Blog da Apiki com conteúdos sobre desenvolvimento web, WordPress e tecnologia',
+    url: 'https://blog.apiki.com',
+    mainEntity: {
+      '@type': 'Blog',
+      name: 'Blog Apiki',
+      blogPost: initialData.posts.map(post => ({
+        '@type': 'BlogPosting',
+        headline: post.title.rendered,
+        image: post._embedded["wp:featuredmedia"][0].source_url,
+        url: post.link,
+      }))
+    }
+  };
 
   return (
     <main className={styles.page}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <header>
         <h1 className={styles.title}>Home Blog Apiki</h1>
       </header>
-      <section className={styles["main-home"]} aria-label="Últimas postagens do blog">
-        <div className={styles['card-wrapper']}>
-          {posts.map((post: CardNamed) => (
-            <SingleCard {...post} key={post.id} /> 
-          ))}
-        </div>
-        <LoadMoreButton />  
-      </section>
+      <PostsList initialData={initialData} />
     </main>
   );
 }

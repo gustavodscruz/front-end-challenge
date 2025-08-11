@@ -6,9 +6,14 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     onPress: () => void;
 }
 
-export default function Button({ content, onPress, ...props }: ButtonProps) {
+export default function Button({ content, onPress, disabled, ...props }: ButtonProps) {
   return (
-    <button className={styles.btn} onClick={() => onPress()} {...props}>
+    <button 
+      className={styles.btn} 
+      onClick={() => onPress()} 
+      disabled={disabled}
+      {...props}
+    >
       {content}
     </button>
   );

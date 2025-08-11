@@ -9,6 +9,11 @@ const nextConfig: NextConfig = {
         hostname: "blog.apiki.com",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "developers.elementor.com",
+        pathname: "/**",
+      }
     ],
   },
 };

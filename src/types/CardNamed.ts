@@ -6,4 +6,6 @@ export type CardNamed = {
     height : number;
     width: number;
     link : string;
+    content? : string;
+    data? : string;
 }

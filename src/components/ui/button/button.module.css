@@ -10,3 +10,13 @@
   font-weight: bold;
   transition: background 0.2s;
 }
+
+.btn:hover:not(:disabled) {
+  background-color: #e55a00;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-color: #ccc;
+}
