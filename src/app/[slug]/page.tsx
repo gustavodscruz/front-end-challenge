@@ -29,7 +29,7 @@ export async function generateStaticParams() {
 async function getPost(slug: string) {
   const response = await fetch(
     `https://blog.apiki.com/wp-json/wp/v2/posts?_embed&slug=${slug}`, {
-        cache: 'force-cache'
+        next: { revalidate: 604800 }
     }
   );
   const posts: Card[] = await response.json();
