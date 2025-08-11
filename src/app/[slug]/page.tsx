@@ -6,12 +6,30 @@ import Link from "next/link";
 import styles from "./page.module.css";
 
 interface PostProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
+}
+
+export async function generateStaticParams() {
+  try {
+    const response = await fetch(
+      'https://blog.apiki.com/wp-json/wp/v2/posts?_embed&categories=518&per_page=100'
+    );
+    const posts: Card[] = await response.json();
+    
+    return posts.map((post) => ({
+      slug: post.link.split('com/')[1],
+    }));
+  } catch (error) {
+    console.error('Error generating static params:', error);
+    return [];
+  }
 }
 
 async function getPost(slug: string) {
   const response = await fetch(
-    `https://blog.apiki.com/wp-json/wp/v2/posts?_embed&slug=${slug}`
+    `https://blog.apiki.com/wp-json/wp/v2/posts?_embed&slug=${slug}`, {
+        cache: 'force-cache'
+    }
   );
   const posts: Card[] = await response.json();
   const post: Card = posts[0];

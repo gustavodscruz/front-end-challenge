@@ -43,7 +43,7 @@ export default async function Home() {
       />
       <header className={styles.hero}>
         <div className={styles.heroContent}>
-          <h1 className={styles.heroTitle}>Blog Apiki</h1>
+          <h1 className={styles.heroTitle}>Apiki.DEV</h1>
           <p className={styles.heroSubtitle}>
             Conteúdo de qualidade sobre desenvolvimento web, WordPress, tecnologia e programação
           </p>

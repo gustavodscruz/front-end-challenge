@@ -4,7 +4,9 @@ import { CardNamed } from "./types/CardNamed";
 
 const handleBlogPosts = async (page: number = 1): Promise<BlogResponse> => {
   const URL = process.env.NEXT_PUBLIC_URL ?? "";
-  const response = await fetch(`${URL}&page=${page}`);
+  const response = await fetch(`${URL}&page=${page}`, {
+    next: { revalidate: 86400 }
+  });
   const data: Card[] = await response.json();
 
   const totalPages = parseInt(response.headers.get("X-WP-TotalPages") || "1");
