@@ -39,7 +39,7 @@ const mapPostToBlogPost = (
     height: post._embedded["wp:featuredmedia"][0].media_details.height,
     titulo: post.title.rendered,
     link: post.link,
-    data: formatDate(post.date),
+    data: formatDate(post.date) ?? "",
     ...(isSinglePost ? { content: post.content?.rendered } : {}),
   };
 };

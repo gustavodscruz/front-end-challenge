@@ -7,5 +7,5 @@ export type CardNamed = {
     width: number;
     link : string;
     content? : string;
-    data? : string;
+    data : string;
 }
