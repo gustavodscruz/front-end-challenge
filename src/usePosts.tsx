@@ -40,7 +40,10 @@ const mapPostToBlogPost = (
     titulo: post.title.rendered,
     link: post.link,
     data: formatDate(post.date) ?? "",
-    ...(isSinglePost ? { content: post.content?.rendered } : {}),
+    ...(isSinglePost ? { 
+      content: post.content?.rendered,
+      excerpt: post.excerpt?.rendered 
+    } : {}),
   };
 };
 

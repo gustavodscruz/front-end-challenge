@@ -40,6 +40,17 @@
   display: block;
 }
 
+.excerpt {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--foreground);
+  opacity: 0.8;
+  margin-bottom: 2rem;
+  font-style: italic;
+  border-left: 4px solid var(--gray-alpha-200);
+  padding-left: 1rem;
+}
+
 .content {
   line-height: 1.6;
   color: var(--foreground);

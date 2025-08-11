@@ -8,4 +8,5 @@ export type CardNamed = {
     link : string;
     content? : string;
     data : string;
+    excerpt? : string;
 }

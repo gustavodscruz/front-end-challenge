@@ -37,6 +37,12 @@ export default async function PostPage({ params }: PostProps) {
       </div>
       <h1 className={styles.title}>{post.titulo}</h1>
       {post.data && <time className={styles.date}>{post.data}</time>}
+      {post.excerpt && (
+        <div 
+          className={styles.excerpt} 
+          dangerouslySetInnerHTML={{ __html: post.excerpt }}
+        />
+      )}
       <div className={styles.content} dangerouslySetInnerHTML={markup}></div>
     </main>
   );
