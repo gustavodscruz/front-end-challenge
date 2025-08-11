@@ -2,6 +2,7 @@ import { Card } from "@/types/Card";
 import { CardNamed } from "@/types/CardNamed";
 import { mapPostToBlogPost } from "@/usePosts";
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./page.module.css";
 
 interface PostProps {
@@ -25,6 +26,11 @@ export default async function PostPage({ params }: PostProps) {
   
   return (
     <main className={styles.container}>
+      <nav className={styles.navigation}>
+        <Link href="/" className={styles.backButton}>
+          ← Voltar para Home
+        </Link>
+      </nav>
       <div className={styles.imageContainer}>
         <Image
           src={post.imagem}

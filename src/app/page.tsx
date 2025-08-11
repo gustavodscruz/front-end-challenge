@@ -41,8 +41,21 @@ export default async function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <header>
-        <h1 className={styles.title}>Home Blog Apiki</h1>
+      <header className={styles.hero}>
+        <div className={styles.heroContent}>
+          <h1 className={styles.heroTitle}>Blog Apiki</h1>
+          <p className={styles.heroSubtitle}>
+            Conteúdo de qualidade sobre desenvolvimento web, WordPress, tecnologia e programação
+          </p>
+          <div className={styles.heroStats}>
+            <span className={styles.stat}>
+              <strong>{initialData.totalPosts}</strong> artigos publicados
+            </span>
+            <span className={styles.stat}>
+              <strong>WordPress</strong> • <strong>Desenvolvimento</strong> • <strong>Tecnologia</strong>
+            </span>
+          </div>
+        </div>
       </header>
       <PostsList initialData={initialData} />
     </main>
