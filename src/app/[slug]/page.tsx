@@ -3,6 +3,7 @@ import { CardNamed } from "@/types/CardNamed";
 import { mapPostToBlogPost } from "@/usePosts";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import styles from "./page.module.css";
 
 interface PostProps {
@@ -32,6 +33,11 @@ async function getPost(slug: string) {
     }
   );
   const posts: Card[] = await response.json();
+  
+  if (!posts || posts.length === 0) {
+    notFound();
+  }
+  
   const post: Card = posts[0];
   const cardNamed: CardNamed = mapPostToBlogPost(post, true);
   return cardNamed;
